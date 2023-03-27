@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../screens/authentication_screen.dart';
+import '../screens/chat_sceen.dart';
 import '../screens/splash_screen.dart';
 import 'named_routes.dart';
 
