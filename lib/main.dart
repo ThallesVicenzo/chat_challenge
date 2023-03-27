@@ -18,8 +18,8 @@ class ChatChallenge extends StatelessWidget {
         primaryColor: Colors.blue,
         textTheme: const TextTheme(
           bodyLarge: TextStyle(color: Colors.white, fontSize: 50),
-          bodyMedium: TextStyle(color: Colors.white, fontSize: 25),
-          bodySmall: TextStyle(color: Colors.white, fontSize: 15),
+          bodyMedium: TextStyle(color: Colors.black, fontSize: 25),
+          bodySmall: TextStyle(color: Colors.black, fontSize: 15),
         ),
       ),
       initialRoute: NamedRoutes.splash,
