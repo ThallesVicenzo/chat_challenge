@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "238888087245",
+    "project_id": "chat-challenge-4baa1",
+    "storage_bucket": "chat-challenge-4baa1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:238888087245:android:13818b8ec42569f2424384",
+        "android_client_info": {
+          "package_name": "com.example.chat_challenge"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "238888087245-59qe882ol8l4s0dqmd50hchg2r5k0nlj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgA9GSLgH_oi5-247Rk0CoLgO6mjY0snY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "238888087245-59qe882ol8l4s0dqmd50hchg2r5k0nlj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
