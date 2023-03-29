@@ -34,7 +34,7 @@ class _SplashScreen extends State<SplashScreen> {
         duration: kThemeAnimationDuration,
         onEnd: () {
           if (opacity == 0) {
-            Navigator.pushNamed(context, NamedRoutes.home);
+            Navigator.pushReplacementNamed(context, NamedRoutes.home);
           }
         },
         child: Center(
