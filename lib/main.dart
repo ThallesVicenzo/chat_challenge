@@ -1,9 +1,13 @@
 import 'package:chat_challenge/routes/named_routes.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'routes/routes.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
   runApp(const ChatChallenge());
 }
 
@@ -18,7 +22,7 @@ class ChatChallenge extends StatelessWidget {
         primaryColor: Colors.blue,
         textTheme: const TextTheme(
           bodyLarge: TextStyle(color: Colors.white, fontSize: 50),
-          bodyMedium: TextStyle(color: Colors.black, fontSize: 25),
+          bodyMedium: TextStyle(color: Colors.white, fontSize: 25),
           bodySmall: TextStyle(color: Colors.black, fontSize: 15),
         ),
       ),
