@@ -68,8 +68,7 @@ class BubbleMessage extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        // ignore: unnecessary_string_escapes
-                        '$day/$month/$year às $hours\h:$minutes min',
+                        '$day/$month/$year às ${hours}h:${minutes}min',
                         style: Theme.of(context)
                             .textTheme
                             .titleSmall!
