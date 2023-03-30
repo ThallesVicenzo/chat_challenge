@@ -1,4 +1,5 @@
 import 'package:chat_challenge/routes/named_routes.dart';
+import 'package:chat_challenge/shared/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -18,14 +19,7 @@ class ChatChallenge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        primaryColor: Colors.blue,
-        textTheme: const TextTheme(
-          bodyLarge: TextStyle(color: Colors.white, fontSize: 50),
-          bodyMedium: TextStyle(color: Colors.white, fontSize: 25),
-          bodySmall: TextStyle(color: Colors.black, fontSize: 15),
-        ),
-      ),
+      theme: AppTheme.lightTheme,
       initialRoute: NamedRoutes.splash,
       routes: Routes.all(context),
     );
