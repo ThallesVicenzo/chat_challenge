@@ -47,7 +47,7 @@ class _SplashScreen extends State<SplashScreen> {
                 color: Colors.white,
               ),
               Text(
-                'ZapZapper',
+                'Zap Zapper',
                 style: Theme.of(context).textTheme.bodyLarge,
               )
             ],
