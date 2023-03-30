@@ -1,3 +1,4 @@
+import 'package:chat_challenge/services/firebase_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -5,7 +6,7 @@ import 'bubble_message.dart';
 
 FirebaseFirestore messagesRef = FirebaseFirestore.instance;
 
-class MessageStream extends StatefulWidget {
+class MessageStream extends StatelessWidget {
   const MessageStream(
       {super.key, required this.nickname, required this.collectionReference});
 
@@ -13,17 +14,10 @@ class MessageStream extends StatefulWidget {
   final String collectionReference;
 
   @override
-  State<MessageStream> createState() => _MessageStreamState();
-}
-
-class _MessageStreamState extends State<MessageStream> {
-  @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-        stream: messagesRef
-            .collection(widget.collectionReference)
-            .orderBy('position')
-            .snapshots(),
+        stream: FirebaseService.getCollectionStream(collectionReference,
+            orderBy: 'position'),
         builder: (BuildContext context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const CircularProgressIndicator();
@@ -46,29 +40,24 @@ class _MessageStreamState extends State<MessageStream> {
                   .copyWith(color: Colors.black),
             );
           }
-          List<BubbleMessage> messageBubbles = [];
 
-          final messages = snapshot.data?.docs.reversed;
-          for (dynamic message in messages!) {
-            var messageText = message.data()['text'];
-            var messageSender = message.data()['nickname'];
-            var messageTimeStamp = message.data()['timestamp'];
+          final messages = snapshot.data!.docs.reversed.toList();
 
-            final messageBubble = BubbleMessage(
-              isMe: messageSender! == widget.nickname,
-              text: messageText,
-              sender: messageSender,
-              timeStamp: messageTimeStamp,
-            );
-
-            messageBubbles.add(messageBubble);
-          }
           return Expanded(
-            child: ListView(
+            child: ListView.builder(
                 reverse: true,
+                itemCount: messages.length,
                 padding: const EdgeInsets.symmetric(
                     horizontal: 10.0, vertical: 20.0),
-                children: messageBubbles),
+                itemBuilder: (context, index) {
+                  final data = messages[index].data()! as Map;
+                  final messageSender = data['nickname'];
+                  return BubbleMessage(
+                      text: data['text'],
+                      sender: messageSender,
+                      timeStamp: data['timestamp'],
+                      isMe: messageSender! == nickname);
+                }),
           );
         });
   }
