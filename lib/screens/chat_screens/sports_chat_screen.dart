@@ -91,7 +91,9 @@ class _SportsChatScreen extends State<SportsChatScreen> {
                   ),
                   IconButton(
                       onPressed: () {
-                        addMessage();
+                        if (messageText != null) {
+                          addMessage();
+                        }
                       },
                       icon: Icon(
                         Icons.arrow_circle_right,

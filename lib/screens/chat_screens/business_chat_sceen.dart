@@ -89,7 +89,9 @@ class _BusinessChatScreenState extends State<BusinessChatScreen> {
                   ),
                   IconButton(
                       onPressed: () {
-                        addMessage();
+                        if (messageText != null) {
+                          addMessage();
+                        }
                       },
                       icon: Icon(
                         Icons.arrow_circle_right,
