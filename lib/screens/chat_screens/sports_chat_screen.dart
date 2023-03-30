@@ -1,5 +1,6 @@
 import 'package:chat_challenge/routes/named_routes.dart';
 import 'package:chat_challenge/screens/chat_screens/widgets/message_stream.dart';
+import 'package:chat_challenge/services/firebase_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -12,9 +13,6 @@ class SportsChatScreen extends StatefulWidget {
   @override
   State<SportsChatScreen> createState() => _SportsChatScreen();
 }
-
-CollectionReference<Map<String, dynamic>> messagesRef =
-    FirebaseFirestore.instance.collection('sports');
 
 class _SportsChatScreen extends State<SportsChatScreen> {
   final messageTextController = TextEditingController();
@@ -29,13 +27,16 @@ class _SportsChatScreen extends State<SportsChatScreen> {
   }
 
   getNickname() async {
-    nickname = await DataService().retrieveData('nickname');
+    nickname = await DataService.retrieveData('nickname');
     return nickname;
   }
 
   void addMessage() async {
     DateTime date =
         DateTime(now.year, now.month, now.day, now.hour, now.minute);
+
+    final messagesRef = FirebaseService.getCollectionSnapshot('sports');
+
     QuerySnapshot<Map<String, dynamic>> documentSize = await messagesRef.get();
     int position = documentSize.size + 1;
     messagesRef.add(
@@ -62,7 +63,7 @@ class _SportsChatScreen extends State<SportsChatScreen> {
           backgroundColor: Theme.of(context).primaryColor,
           centerTitle: true,
           title: Text(
-            'Sports⚽',
+            'Sports',
             style: Theme.of(context).textTheme.bodyMedium,
           ),
         ),
@@ -72,7 +73,7 @@ class _SportsChatScreen extends State<SportsChatScreen> {
           children: [
             MessageStream(
               nickname: nickname,
-              collectionReference: 'business',
+              collectionReference: 'sports',
             ),
             Container(
               decoration: kMessageContainerDecoration,

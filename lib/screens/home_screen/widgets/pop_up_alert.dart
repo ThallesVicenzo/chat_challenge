@@ -2,6 +2,8 @@ import 'package:chat_challenge/services/shared_preferences.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+import '../../../services/firebase_service.dart';
+
 class PopUpAlert extends StatefulWidget {
   const PopUpAlert({
     super.key,
@@ -14,15 +16,15 @@ class PopUpAlert extends StatefulWidget {
   State<PopUpAlert> createState() => _PopUpAlertState();
 }
 
-final CollectionReference<Map<String, dynamic>> users =
-    FirebaseFirestore.instance.collection('users');
-
 class _PopUpAlertState extends State<PopUpAlert> {
   final _text = TextEditingController();
   String nickname = '';
-  dynamic error;
+  String? error;
 
-  _errorText() async {
+  DocumentReference<Map<String, dynamic>> get getNicknameDoc =>
+      FirebaseService.getDocumentSnapshot('nickname', nickname);
+
+  Future<String?> _errorText() async {
     final text = _text.value.text;
     if (text.isEmpty) {
       return 'Não pode ser vazio!';
@@ -33,7 +35,7 @@ class _PopUpAlertState extends State<PopUpAlert> {
     if (text.length > 10) {
       return 'Não pode ter mais que 10 caracteres.';
     }
-    final queryNickname = users.doc(nickname);
+    final queryNickname = getNicknameDoc;
     final result = await queryNickname.get();
     if (result.exists) {
       return 'Apelido já existe!';
@@ -64,22 +66,22 @@ class _PopUpAlertState extends State<PopUpAlert> {
       ),
       actions: [
         TextButton(
-          onPressed: () async {
-            String? text = await _errorText();
-            setState(() {
-              error = text;
-            });
-
-            if (text == null) {
-              DataService().saveData(nickname);
-              users.doc(nickname).set({
-                'nickname': nickname,
+          onPressed: () {
+            _errorText().then((text) {
+              setState(() {
+                error = text;
               });
-              // ignore: use_build_context_synchronously
-              Navigator.pushNamed(context, widget.routes);
-            } else {
-              setState(() {});
-            }
+
+              if (text == null) {
+                DataService.saveData(nickname);
+                getNicknameDoc.set({
+                  'nickname': nickname,
+                });
+                Navigator.pushNamed(context, widget.routes);
+              } else {
+                setState(() {});
+              }
+            });
           },
           child: const Text('Confirmar'),
         )
