@@ -1,4 +1,3 @@
-import 'package:chat_challenge/routes/named_routes.dart';
 import 'package:chat_challenge/screens/home_screen/widgets/pop_up_alert.dart';
 import 'package:flutter/material.dart';
 
