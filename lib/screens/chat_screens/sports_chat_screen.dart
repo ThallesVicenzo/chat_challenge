@@ -63,7 +63,7 @@ class _SportsChatScreen extends State<SportsChatScreen> {
           backgroundColor: Theme.of(context).primaryColor,
           centerTitle: true,
           title: Text(
-            'Sports',
+            'Esportes⚽',
             style: Theme.of(context).textTheme.bodyMedium,
           ),
         ),

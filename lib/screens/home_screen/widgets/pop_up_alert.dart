@@ -48,7 +48,7 @@ class _PopUpAlertState extends State<PopUpAlert> {
     return AlertDialog(
       backgroundColor: Colors.white,
       title: Text(
-        'Por favor, digite seu nickname.',
+        'Por favor, digite seu apelido.',
         style: Theme.of(context)
             .textTheme
             .bodyMedium!
@@ -62,7 +62,7 @@ class _PopUpAlertState extends State<PopUpAlert> {
           });
         },
         decoration: InputDecoration(
-            hintText: 'Escreva seu nickname aqui.', errorText: error),
+            hintText: 'Escreva seu apelido aqui.', errorText: error),
       ),
       actions: [
         TextButton(
