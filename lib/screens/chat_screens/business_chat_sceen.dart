@@ -34,7 +34,7 @@ class _BusinessChatScreenState extends State<BusinessChatScreen> {
   void addMessage() async {
     DateTime date =
         DateTime(now.year, now.month, now.day, now.hour, now.minute);
-    final messagesRef = FirebaseService.getCollectionSnapshot('sports');
+    final messagesRef = FirebaseService.getCollectionSnapshot('business');
     QuerySnapshot<Map<String, dynamic>> documentSize = await messagesRef.get();
     int position = documentSize.size + 1;
     messagesRef.add(
@@ -61,7 +61,7 @@ class _BusinessChatScreenState extends State<BusinessChatScreen> {
           backgroundColor: Theme.of(context).primaryColor,
           centerTitle: true,
           title: Text(
-            'Business💼',
+            'Negócios💼',
             style: Theme.of(context).textTheme.bodyMedium,
           ),
         ),
