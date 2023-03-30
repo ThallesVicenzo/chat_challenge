@@ -23,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           title: Center(
-            child: Text('Welcome !',
+            child: Text('Bem vindo!',
                 style: Theme.of(context).textTheme.bodyMedium),
           ),
         ),
@@ -31,13 +31,13 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Text('Please choose your Group Chat',
+              Text('Por favor escolha algum grupo!',
                   style: Theme.of(context).textTheme.bodyMedium),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SelectGroupButton(
-                    about: 'Business',
+                    about: 'Negócios',
                     icon: Icons.business,
                     routes: NamedRoutes.business,
                   ),
@@ -47,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     routes: NamedRoutes.videgame,
                   ),
                   SelectGroupButton(
-                    about: 'Sports',
+                    about: 'Esportes',
                     icon: Icons.sports,
                     routes: NamedRoutes.sports,
                   ),
